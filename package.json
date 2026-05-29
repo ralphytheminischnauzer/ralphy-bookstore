@@ -1,0 +1,9 @@
+{
+  "name": "ralphybookstore-netlify-checkout",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Netlify-ready Ralphy bookstore site with dynamic Stripe Checkout quantity support.",
+  "dependencies": {
+    "stripe": "^17.7.0"
+  }
+}
