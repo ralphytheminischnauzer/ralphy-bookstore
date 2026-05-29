@@ -8,3 +8,5 @@
 
 [template.environment]
   STRIPE_SECRET_KEY = "Paste your Stripe secret key here in Netlify. Do not put it in index.html."
+
+# deploy
