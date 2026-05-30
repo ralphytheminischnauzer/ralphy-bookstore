@@ -58,7 +58,7 @@ exports.handler = async (event) => {
             unit_amount: UNIT_AMOUNT_CENTS,
             product_data: {
               name: BOOK_NAME,
-              description: 'Children\'s picture book by Indy Benning'
+              description: 'Children\'s picture book by Indy Benning. Shipping is calculated separately and is not included in the $18 USD book price.'
             }
           },
           quantity
@@ -76,7 +76,7 @@ exports.handler = async (event) => {
       },
       custom_text: {
         submit: {
-          message: `You are ordering ${quantity} ${quantity === 1 ? 'copy' : 'copies'} of Ralphy's Big Beautiful Day.`
+          message: `You are ordering ${quantity} ${quantity === 1 ? 'copy' : 'copies'} of Ralphy's Big Beautiful Day. Shipping is calculated separately and is not included in this checkout total.`
         }
       },
       success_url: `${origin}/?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
