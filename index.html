@@ -101,6 +101,10 @@
   .price-big { font-family:'Baloo 2',cursive; font-size:72px; font-weight:900; color:var(--gold-pale); line-height:1; }
   .price-big sup { font-size:32px; vertical-align:super; color:var(--gold-light); }
   .price-note { font-size:13px; color:rgba(245,228,176,0.45); }
+  .shipping-note { max-width:520px; margin:-18px auto 30px; background:rgba(245,228,176,0.09); border:2px solid rgba(232,185,106,0.28); border-radius:18px; padding:16px 20px; color:rgba(245,228,176,0.88); font-size:15px; font-weight:800; line-height:1.55; text-align:center; }
+  .shipping-note strong { color:var(--gold-pale); }
+  .shipping-ack { display:flex; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.05); border:2px solid rgba(232,185,106,0.18); border-radius:14px; padding:14px 16px; color:rgba(245,228,176,0.78); font-size:14px; font-weight:800; line-height:1.45; }
+  .shipping-ack input { margin-top:3px; accent-color:var(--gold); width:18px; height:18px; flex-shrink:0; }
   .order-form { display:flex; flex-direction:column; gap:14px; text-align:left; }
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   .field-label { display:block; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px; }
@@ -178,7 +182,7 @@
 
     <div class="hero-cta">
       <a href="#order" class="cta-btn" id="heroBtn">🐾 Get Your Copy Now!</a>
-      <span class="cta-note">✍️ By Indy Benning · Ships Worldwide 🌍</span>
+      <span class="cta-note">✍️ By Indy Benning · $18 USD + shipping</span>
     </div>
   </div>
 </section>
@@ -229,24 +233,29 @@
 <section class="order-section" id="order">
   <div class="order-inner">
     <h2 class="order-title">🐾 Order Your Copy!</h2>
-    <p class="order-sub">Printed to order and shipped directly to you.<br>The perfect gift for any little reader with a big heart. 💛</p>
+    <p class="order-sub">Order your copy today. Shipping is confirmed separately based on your delivery location.<br>The perfect gift for any little reader with a big heart. 💛</p>
 
     <div class="checkout-success-panel" id="checkoutSuccessPanel" role="status" aria-live="polite">
       <span class="checkout-success-icon">🎉</span>
       <h3 class="checkout-success-title">Thank you for your order!</h3>
       <p class="checkout-success-text">
-        Your payment was successful and your copy of <strong>Ralphy's Big Beautiful Day</strong> is being prepared.
+        Your payment was successful for the book price. Shipping will be confirmed separately before your copy of <strong>Ralphy's Big Beautiful Day</strong> is mailed.
       </p>
       <div class="checkout-success-note">
-        Please check your email for your Stripe receipt. If you do not see it, please check your junk or spam folder.
+        Please check your email for your Stripe receipt. If shipping still needs to be collected, Indy will contact you with the shipping amount based on your delivery location.
       </div>
     </div>
 
     <div class="price-card">
       <span class="price-label-top">Price per copy</span>
       <div class="price-big"><sup>$</sup>18</div>
-      <span class="price-note">per copy · ships worldwide</span>
+      <span class="price-note">per copy · shipping calculated separately</span>
     </div>
+
+    <div class="shipping-note">
+      <strong>Shipping is not included</strong> in the $18 USD book price. Shipping will be confirmed separately based on your delivery location before your book is mailed.
+    </div>
+
     <div class="order-form" id="orderForm">
 
       <div class="form-row">
@@ -261,6 +270,11 @@
       </div>
       <div><label class="field-label">Country</label><input type="text" class="form-input" placeholder="Country" id="country"/></div>
 
+      <label class="shipping-ack">
+        <input type="checkbox" id="shippingAck" />
+        <span>I understand that shipping is calculated separately and is not included in the $18 USD book price.</span>
+      </label>
+
       <div class="qty-section">
         <span class="qty-label-txt">📚 Quantity</span>
         <div class="qty-control">
@@ -272,7 +286,7 @@
       </div>
 
       <button type="button" class="order-btn" id="mainBtn" onclick="submitOrder()">
-        🐾 Place My Order — $<span id="btnTotal">18</span> USD
+        🐾 Place My Order — $<span id="btnTotal">18</span> USD + shipping
       </button>
 
       <div class="success-msg" id="successMsg">
@@ -280,7 +294,7 @@
       </div>
 
       <p class="order-fine">
-        Secure checkout powered by Stripe. Your selected quantity is sent directly to checkout. Ships within 5–10 business days worldwide.
+        Secure checkout powered by Stripe. The $18 USD price is for the book only; shipping is calculated separately based on your delivery location and confirmed before mailing.
         Questions? DM <a href="https://instagram.com/ralphy.the.minischnauzer" target="_blank" style="color:rgba(245,228,176,0.9);font-weight:800;text-decoration:underline;">@ralphy.the.minischnauzer</a> on Instagram.
       </p>
 
@@ -332,7 +346,7 @@
       btn.style.cursor = isLoading ? 'wait' : 'pointer';
       btn.innerHTML = isLoading
         ? 'Creating secure checkout...'
-        : '🐾 Place My Order — $<span id="btnTotal">' + money(qty * UNIT_PRICE) + '</span> USD';
+        : '🐾 Place My Order — $<span id="btnTotal">' + money(qty * UNIT_PRICE) + '</span> USD + shipping';
     }
 
     function readField(id) {
@@ -376,6 +390,7 @@
       var ci = readField('city');
       var po = readField('postal');
       var co = readField('country');
+      var shippingAck = getEl('shippingAck');
 
       if (!fn || !ln || !em || !ad || !ci || !po || !co) {
         alert('Please fill in all fields! 🐾');
@@ -385,11 +400,15 @@
         alert('Please enter a valid email address!');
         return;
       }
+      if (!shippingAck || !shippingAck.checked) {
+        alert('Please confirm that shipping is calculated separately and is not included in the $18 USD book price.');
+        return;
+      }
 
       var successMsg = getEl('successMsg');
       if (successMsg) {
         successMsg.style.display = 'block';
-        successMsg.textContent = 'Creating secure checkout for ' + qty + ' ' + (qty === 1 ? 'copy' : 'copies') + '...';
+        successMsg.textContent = 'Creating secure checkout for the book price. Shipping will be confirmed separately.';
       }
       setButtonLoading(true);
 
