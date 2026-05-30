@@ -98,12 +98,17 @@
   .order-sub { font-size:17px; color:rgba(245,228,176,0.65); margin-bottom:40px; line-height:1.6; }
   .price-card { background:rgba(255,255,255,0.06); border:2px solid rgba(232,185,106,0.25); border-radius:24px; padding:28px 40px; margin-bottom:36px; display:inline-flex; flex-direction:column; align-items:center; gap:4px; }
   .price-label-top { font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold-light); }
-  .price-big { font-family:'Baloo 2',cursive; font-size:72px; font-weight:900; color:var(--gold-pale); line-height:1; }
-  .price-big sup { font-size:32px; vertical-align:super; color:var(--gold-light); }
+  .price-big { font-family:'Baloo 2',cursive; font-size:72px; font-weight:900; color:var(--gold-pale); line-height:1; display:inline-flex; align-items:baseline; justify-content:center; gap:4px; white-space:nowrap; }
+  .price-big .currency-symbol { font-size:42px; color:var(--gold-light); line-height:1; }
+  .price-big .currency-code { font-size:28px; color:var(--gold-light); letter-spacing:1px; line-height:1; }
   .price-note { font-size:13px; color:rgba(245,228,176,0.45); }
-  .shipping-note { max-width:520px; margin:-18px auto 30px; background:rgba(245,228,176,0.09); border:2px solid rgba(232,185,106,0.28); border-radius:18px; padding:16px 20px; color:rgba(245,228,176,0.88); font-size:15px; font-weight:800; line-height:1.55; text-align:center; }
+  .shipping-note { display:none; max-width:520px; margin:-18px auto 30px; background:rgba(245,228,176,0.09); border:2px solid rgba(232,185,106,0.28); border-radius:18px; padding:16px 20px; color:rgba(245,228,176,0.88); font-size:15px; font-weight:800; line-height:1.55; text-align:center; }
+  .shipping-note.show { display:block; }
   .shipping-note strong { color:var(--gold-pale); }
-  .shipping-ack { display:flex; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.05); border:2px solid rgba(232,185,106,0.18); border-radius:14px; padding:14px 16px; color:rgba(245,228,176,0.78); font-size:14px; font-weight:800; line-height:1.45; }
+  .conditional-field { display:none; }
+  .conditional-field.show { display:block; }
+  .shipping-ack { display:none; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.05); border:2px solid rgba(232,185,106,0.18); border-radius:14px; padding:14px 16px; color:rgba(245,228,176,0.78); font-size:14px; font-weight:800; line-height:1.45; }
+  .shipping-ack.show { display:flex; }
   .shipping-ack input { margin-top:3px; accent-color:var(--gold); width:18px; height:18px; flex-shrink:0; }
   .order-form { display:flex; flex-direction:column; gap:14px; text-align:left; }
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
@@ -119,6 +124,7 @@
   .qty-num { width:40px; text-align:center; font-family:'Baloo 2',cursive; font-size:18px; font-weight:900; color:var(--gold-pale); background:none; border:none; outline:none; }
   .qty-total-txt { font-size:16px; font-weight:900; color:var(--gold-light); }
   .order-btn { width:100%; background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%); color:var(--brown); font-family:'Baloo 2',cursive; font-size:20px; font-weight:900; padding:18px 32px; border-radius:60px; border:none; cursor:pointer; box-shadow:0 8px 0 rgba(160,104,48,0.4),0 12px 30px rgba(201,144,58,0.3); transition:all 0.15s ease; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .btn-price { white-space:nowrap; display:inline-flex; align-items:baseline; }
   .order-btn:hover { transform:translateY(-3px); box-shadow:0 11px 0 rgba(160,104,48,0.4),0 18px 40px rgba(201,144,58,0.35); }
   .order-btn:active { transform:translateY(3px); box-shadow:0 4px 0 rgba(160,104,48,0.4); }
   .order-fine { margin-top:18px; font-size:13px; color:rgba(245,228,176,0.38); line-height:1.7; text-align:center; }
@@ -139,7 +145,11 @@
     .form-row { grid-template-columns:1fr; }
     .ralphy-card { flex-direction:column; align-items:center; text-align:center; padding:32px 24px; }
     .book-img { width:220px; height:220px; }
-    .price-big { font-size:56px; }
+    .price-card { padding:24px 26px; }
+    .price-big { font-size:52px; }
+    .price-big .currency-symbol { font-size:32px; }
+    .price-big .currency-code { font-size:22px; }
+    .order-btn { font-size:18px; padding:16px 18px; gap:6px; white-space:normal; line-height:1.15; flex-wrap:wrap; }
     .qty-section { flex-direction:column; gap:12px; }
   }
 
@@ -182,7 +192,7 @@
 
     <div class="hero-cta">
       <a href="#order" class="cta-btn" id="heroBtn">🐾 Get Your Copy Now!</a>
-      <span class="cta-note">✍️ By Indy Benning · $18 USD + shipping</span>
+      <span class="cta-note">✍️ By Indy Benning · $18 USD</span>
     </div>
   </div>
 </section>
@@ -233,28 +243,26 @@
 <section class="order-section" id="order">
   <div class="order-inner">
     <h2 class="order-title">🐾 Order Your Copy!</h2>
-    <p class="order-sub">Order your copy today. Shipping is confirmed separately based on your delivery location.<br>The perfect gift for any little reader with a big heart. 💛</p>
+    <p class="order-sub">Order your copy today.<br>The perfect gift for any little reader with a big heart. 💛</p>
 
     <div class="checkout-success-panel" id="checkoutSuccessPanel" role="status" aria-live="polite">
       <span class="checkout-success-icon">🎉</span>
       <h3 class="checkout-success-title">Thank you for your order!</h3>
       <p class="checkout-success-text">
-        Your payment was successful for the book price. Shipping will be confirmed separately before your copy of <strong>Ralphy's Big Beautiful Day</strong> is mailed.
+        Your payment was successful. Your copy of <strong>Ralphy's Big Beautiful Day</strong> will be prepared for mailing.
       </p>
       <div class="checkout-success-note">
-        Please check your email for your Stripe receipt. If shipping still needs to be collected, Indy will contact you with the shipping amount based on your delivery location.
+        Please check your email for your Stripe receipt. Indy will contact you if any delivery details need to be confirmed.
       </div>
     </div>
 
     <div class="price-card">
       <span class="price-label-top">Price per copy</span>
-      <div class="price-big"><sup>$</sup>18</div>
-      <span class="price-note">per copy · shipping calculated separately</span>
+      <div class="price-big"><span class="currency-symbol">$</span>18 <span class="currency-code">USD</span></div>
+      <span class="price-note">per copy</span>
     </div>
 
-    <div class="shipping-note">
-      <strong>Shipping is not included</strong> in the $18 USD book price. Shipping will be confirmed separately based on your delivery location before your book is mailed.
-    </div>
+    <div class="shipping-note" id="shippingNote" aria-live="polite"></div>
 
     <div class="order-form" id="orderForm">
 
@@ -268,11 +276,12 @@
         <div><label class="field-label">City</label><input type="text" class="form-input" placeholder="City" id="city"/></div>
         <div><label class="field-label">Postal / ZIP Code</label><input type="text" class="form-input" placeholder="Postal / ZIP" id="postal"/></div>
       </div>
-      <div><label class="field-label">Country</label><input type="text" class="form-input" placeholder="Country" id="country"/></div>
+      <div><label class="field-label">Country</label><select class="form-input" id="country"><option value="Canada" selected>Canada</option><option value="United States">United States</option><option value="Other">Other / International</option></select></div>
+      <div class="conditional-field show" id="provinceWrap"><label class="field-label">Province</label><select class="form-input" id="province"><option value="QC" selected>Quebec</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland and Labrador</option><option value="NS">Nova Scotia</option><option value="NT">Northwest Territories</option><option value="NU">Nunavut</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option></select></div>
 
-      <label class="shipping-ack">
+      <label class="shipping-ack" id="shippingAckWrap">
         <input type="checkbox" id="shippingAck" />
-        <span>I understand that shipping is calculated separately and is not included in the $18 USD book price.</span>
+        <span id="shippingAckText">I understand this order total includes the listed delivery charge for my location.</span>
       </label>
 
       <div class="qty-section">
@@ -286,7 +295,7 @@
       </div>
 
       <button type="button" class="order-btn" id="mainBtn" onclick="submitOrder()">
-        🐾 Place My Order — $<span id="btnTotal">18</span> USD + shipping
+        🐾 Place My Order — <span class="btn-price">$<span id="btnTotal">18</span> USD</span>
       </button>
 
       <div class="success-msg" id="successMsg">
@@ -294,7 +303,7 @@
       </div>
 
       <p class="order-fine">
-        Secure checkout powered by Stripe. The $18 USD price is for the book only; shipping is calculated separately based on your delivery location and confirmed before mailing.
+        Secure checkout powered by Stripe. The full amount shown above is the amount you will review before payment.
         Questions? DM <a href="https://instagram.com/ralphy.the.minischnauzer" target="_blank" style="color:rgba(245,228,176,0.9);font-weight:800;text-decoration:underline;">@ralphy.the.minischnauzer</a> on Instagram.
       </p>
 
@@ -318,6 +327,8 @@
     var UNIT_PRICE = 18;
     var MIN_QTY = 1;
     var MAX_QTY = 99;
+    var CANADA_NON_QC_SHIPPING = 8;
+    var USA_SHIPPING = 12;
     var qty = 1;
 
     function money(amount) {
@@ -328,25 +339,97 @@
       return document.getElementById(id);
     }
 
+    function selectedCountry() {
+      return readField('country') || 'Canada';
+    }
+
+    function selectedProvince() {
+      return readField('province');
+    }
+
+    function isQuebecBuyer() {
+      return selectedCountry() === 'Canada' && selectedProvince() === 'QC';
+    }
+
+    function getShippingAmount() {
+      var country = selectedCountry();
+      if (country === 'Canada') return isQuebecBuyer() ? 0 : CANADA_NON_QC_SHIPPING;
+      if (country === 'United States') return USA_SHIPPING;
+      return null;
+    }
+
+    function getOrderTotal() {
+      var subtotal = qty * UNIT_PRICE;
+      var shipping = getShippingAmount();
+      return shipping === null ? subtotal : subtotal + shipping;
+    }
+
+    function getButtonHtml() {
+      var shipping = getShippingAmount();
+      if (shipping === null) return 'Contact for International Delivery';
+      var total = getOrderTotal();
+      var suffix = shipping > 0 ? ' <span class="btn-shipping-label">(incl. delivery)</span>' : '';
+      return '🐾 Place My Order — <span class="btn-price">$<span id="btnTotal">' + money(total) + '</span> USD</span>' + suffix;
+    }
+
+    function updateShippingUi() {
+      var country = selectedCountry();
+      var provinceWrap = getEl('provinceWrap');
+      var shippingNote = getEl('shippingNote');
+      var shippingAckWrap = getEl('shippingAckWrap');
+      var shippingAck = getEl('shippingAck');
+      var mainBtn = getEl('mainBtn');
+      var shipping = getShippingAmount();
+      var showProvince = country === 'Canada';
+      var showShipping = shipping !== null && shipping > 0;
+
+      if (provinceWrap) provinceWrap.classList.toggle('show', showProvince);
+      if (shippingNote) {
+        shippingNote.classList.toggle('show', showShipping || shipping === null);
+        if (isQuebecBuyer()) {
+          shippingNote.textContent = '';
+        } else if (country === 'Canada') {
+          shippingNote.innerHTML = '<strong>Delivery: $' + money(CANADA_NON_QC_SHIPPING) + ' USD</strong> for Canadian addresses outside Quebec. Your total below includes delivery before payment.';
+        } else if (country === 'United States') {
+          shippingNote.innerHTML = '<strong>Delivery: $' + money(USA_SHIPPING) + ' USD</strong> for U.S. addresses. Your total below includes delivery before payment.';
+        } else {
+          shippingNote.innerHTML = '<strong>International delivery:</strong> Please DM @ralphy.the.minischnauzer for a quote before ordering.';
+        }
+      }
+      if (shippingAckWrap) shippingAckWrap.classList.toggle('show', showShipping);
+      if (!showShipping && shippingAck) shippingAck.checked = false;
+      if (mainBtn) mainBtn.disabled = shipping === null;
+    }
+
     function updateTotals() {
-      var total = qty * UNIT_PRICE;
+      var shipping = getShippingAmount();
+      var total = getOrderTotal();
       var qtyInput = getEl('qty');
       var qtyTotal = getEl('qtyTotal');
+      var btn = getEl('mainBtn');
       var btnTotal = getEl('btnTotal');
       if (qtyInput) qtyInput.value = qty;
-      if (qtyTotal) qtyTotal.textContent = 'Total: $' + money(total);
+      if (qtyTotal) {
+        if (shipping === null) {
+          qtyTotal.textContent = 'Total: contact for quote';
+        } else if (shipping > 0) {
+          qtyTotal.textContent = 'Total: $' + money(total) + ' USD incl. delivery';
+        } else {
+          qtyTotal.textContent = 'Total: $' + money(total) + ' USD';
+        }
+      }
+      if (btn) btn.innerHTML = getButtonHtml();
       if (btnTotal) btnTotal.textContent = money(total);
+      updateShippingUi();
     }
 
     function setButtonLoading(isLoading) {
       var btn = getEl('mainBtn');
       if (!btn) return;
-      btn.disabled = isLoading;
+      btn.disabled = isLoading || getShippingAmount() === null;
       btn.style.opacity = isLoading ? '0.75' : '1';
       btn.style.cursor = isLoading ? 'wait' : 'pointer';
-      btn.innerHTML = isLoading
-        ? 'Creating secure checkout...'
-        : '🐾 Place My Order — $<span id="btnTotal">' + money(qty * UNIT_PRICE) + '</span> USD + shipping';
+      btn.innerHTML = isLoading ? 'Creating secure checkout...' : getButtonHtml();
     }
 
     function readField(id) {
@@ -390,9 +473,12 @@
       var ci = readField('city');
       var po = readField('postal');
       var co = readField('country');
+      var pr = selectedProvince();
       var shippingAck = getEl('shippingAck');
+      var shipping = getShippingAmount();
+      var total = getOrderTotal();
 
-      if (!fn || !ln || !em || !ad || !ci || !po || !co) {
+      if (!fn || !ln || !em || !ad || !ci || !po || !co || (co === 'Canada' && !pr)) {
         alert('Please fill in all fields! 🐾');
         return;
       }
@@ -400,15 +486,19 @@
         alert('Please enter a valid email address!');
         return;
       }
-      if (!shippingAck || !shippingAck.checked) {
-        alert('Please confirm that shipping is calculated separately and is not included in the $18 USD book price.');
+      if (shipping === null) {
+        alert('Please DM @ralphy.the.minischnauzer for an international delivery quote before ordering.');
+        return;
+      }
+      if (shipping > 0 && (!shippingAck || !shippingAck.checked)) {
+        alert('Please confirm that the total includes the listed delivery charge for your location.');
         return;
       }
 
       var successMsg = getEl('successMsg');
       if (successMsg) {
         successMsg.style.display = 'block';
-        successMsg.textContent = 'Creating secure checkout for the book price. Shipping will be confirmed separately.';
+        successMsg.textContent = 'Creating secure checkout for your $' + money(total) + ' USD total.';
       }
       setButtonLoading(true);
 
@@ -425,8 +515,11 @@
               address: ad,
               city: ci,
               postal: po,
-              country: co
-            }
+              country: co,
+              province: co === 'Canada' ? pr : '',
+              shippingAmount: shipping
+            },
+            shippingCents: Math.round(shipping * 100)
           })
         });
 
@@ -470,6 +563,11 @@
           if (orderSection) orderSection.scrollIntoView({ behavior: 'smooth' });
         });
       }
+
+      var countryInput = getEl('country');
+      var provinceInput = getEl('province');
+      if (countryInput) countryInput.addEventListener('change', updateTotals);
+      if (provinceInput) provinceInput.addEventListener('change', updateTotals);
 
       var qtyInput = getEl('qty');
       if (qtyInput) {
