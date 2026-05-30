@@ -119,6 +119,12 @@
   .order-btn:active { transform:translateY(3px); box-shadow:0 4px 0 rgba(160,104,48,0.4); }
   .order-fine { margin-top:18px; font-size:13px; color:rgba(245,228,176,0.38); line-height:1.7; text-align:center; }
   .success-msg { display:none; background:rgba(152,194,152,0.15); border:2px solid rgba(152,194,152,0.4); border-radius:16px; padding:20px; color:#7ab87a; font-weight:800; font-size:16px; text-align:center; margin-top:16px; line-height:1.6; }
+  .checkout-success-panel { display:none; background:rgba(255,255,255,0.08); border:2px solid rgba(152,194,152,0.55); border-radius:24px; padding:30px 26px; margin:28px 0 32px; text-align:center; box-shadow:0 14px 40px rgba(0,0,0,0.12); }
+  .checkout-success-panel.show { display:block; }
+  .checkout-success-icon { font-size:46px; display:block; margin-bottom:10px; }
+  .checkout-success-title { font-family:'Baloo 2',cursive; font-size:32px; font-weight:900; color:var(--gold-pale); margin-bottom:8px; line-height:1.1; }
+  .checkout-success-text { font-size:16px; line-height:1.7; color:rgba(245,228,176,0.82); margin-bottom:16px; }
+  .checkout-success-note { background:rgba(152,194,152,0.13); border:1.5px solid rgba(152,194,152,0.38); border-radius:14px; color:#bde4bd; font-size:15px; font-weight:800; line-height:1.6; padding:14px 16px; }
 
   footer { background:var(--cream); padding:40px 24px; text-align:center; border-top:3px dashed rgba(201,144,58,0.2); }
   footer p { font-size:15px; color:var(--text-soft); margin-bottom:6px; font-weight:600; }
@@ -224,6 +230,18 @@
   <div class="order-inner">
     <h2 class="order-title">🐾 Order Your Copy!</h2>
     <p class="order-sub">Printed to order and shipped directly to you.<br>The perfect gift for any little reader with a big heart. 💛</p>
+
+    <div class="checkout-success-panel" id="checkoutSuccessPanel" role="status" aria-live="polite">
+      <span class="checkout-success-icon">🎉</span>
+      <h3 class="checkout-success-title">Thank you for your order!</h3>
+      <p class="checkout-success-text">
+        Your payment was successful and your copy of <strong>Ralphy's Big Beautiful Day</strong> is being prepared.
+      </p>
+      <div class="checkout-success-note">
+        Please check your email for your Stripe receipt. If you do not see it, please check your junk or spam folder.
+      </div>
+    </div>
+
     <div class="price-card">
       <span class="price-label-top">Price per copy</span>
       <div class="price-big"><sup>$</sup>18</div>
@@ -322,6 +340,28 @@
       return el && el.value ? el.value.trim() : '';
     }
 
+    function handleCheckoutReturn() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('checkout') !== 'success') return;
+
+      var panel = getEl('checkoutSuccessPanel');
+      var orderForm = getEl('orderForm');
+      var orderTitle = document.querySelector('.order-title');
+      var orderSub = document.querySelector('.order-sub');
+      var orderSection = getEl('order');
+      var priceCard = document.querySelector('.price-card');
+
+      if (panel) panel.classList.add('show');
+      if (orderForm) orderForm.style.display = 'none';
+      if (priceCard) priceCard.style.display = 'none';
+      if (orderTitle) orderTitle.textContent = 'Order Confirmed!';
+      if (orderSub) orderSub.textContent = 'Thank you for supporting Ralphy’s Big Beautiful Day.';
+
+      window.setTimeout(function () {
+        if (orderSection) orderSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+
     window.changeQty = function (delta) {
       var nextQty = qty + Number(delta || 0);
       qty = Math.max(MIN_QTY, Math.min(MAX_QTY, nextQty));
@@ -401,6 +441,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
       updateTotals();
+      handleCheckoutReturn();
 
       var heroBtn = getEl('heroBtn');
       if (heroBtn) {
