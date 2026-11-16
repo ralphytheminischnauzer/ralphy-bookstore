@@ -7,10 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream:#fdf8ee; --warm:#fffdf5; --gold:#c9903a; --gold-light:#e8b96a;
-    --gold-pale:#f5e4b0; --brown:#4a2c0a; --brown-mid:#7a4a1e;
-    --brown-soft:#a06830; --blush:#f5c4a8; --sage:#98c298;
-    --sky:#aed6f1; --text:#3a2008; --text-soft:#7a5a38;
+    --cream:#f2f7fd; --warm:#fafcff; --gold:#3a7bc8; --gold-light:#86b9ec;
+    --gold-pale:#dcecfc; --brown:#14385f; --brown-mid:#2b5d92;
+    --brown-soft:#4f86c0; --blush:#f5c4a8; --sage:#bcdcf6;
+    --sky:#aed6f1; --text:#10304f; --text-soft:#4b6887;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--cream); font-family:'Nunito',sans-serif; color:var(--text); overflow-x:hidden; }
@@ -31,10 +31,10 @@
   .paw-row span { font-size:26px; display:inline-block; animation:paw-bounce 1.2s ease-in-out infinite alternate; animation-delay:calc(var(--i)*0.18s); }
   @keyframes paw-bounce { from{transform:translateY(0) rotate(-8deg);} to{transform:translateY(-12px) rotate(8deg);} }
 
-  .hero-tag { background:var(--sage); color:#1a4a1a; font-size:13px; font-weight:800; letter-spacing:3px; text-transform:uppercase; padding:6px 20px; border-radius:30px; margin-bottom:20px; display:inline-block; white-space:nowrap; }
+  .hero-tag { background:var(--sage); color:#14385f; font-size:13px; font-weight:800; letter-spacing:3px; text-transform:uppercase; padding:6px 20px; border-radius:30px; margin-bottom:20px; display:inline-block; white-space:nowrap; }
 
-  h1 { font-family:'Baloo 2',cursive; font-size:clamp(56px,9vw,104px); font-weight:900; color:var(--brown); line-height:1; text-shadow:3px 4px 0 rgba(74,44,10,0.1); animation:title-in 0.8s ease 0.3s both; margin-bottom:4px; }
-  .title-line2 { font-family:'Baloo 2',cursive; font-size:clamp(46px,7vw,84px); font-weight:900; color:var(--gold); line-height:1; text-shadow:3px 4px 0 rgba(201,144,58,0.2); animation:title-in 0.8s ease 0.5s both; margin-bottom:20px; }
+  h1 { font-family:'Baloo 2',cursive; font-size:clamp(56px,9vw,104px); font-weight:900; color:var(--brown); line-height:1; text-shadow:3px 4px 0 rgba(20,56,95,0.1); animation:title-in 0.8s ease 0.3s both; margin-bottom:4px; }
+  .title-line2 { font-family:'Baloo 2',cursive; font-size:clamp(46px,7vw,84px); font-weight:900; color:var(--gold); line-height:1; text-shadow:3px 4px 0 rgba(58,123,200,0.2); animation:title-in 0.8s ease 0.5s both; margin-bottom:20px; }
   @keyframes title-in { from{opacity:0;transform:translateY(20px) scale(0.95);} to{opacity:1;transform:translateY(0) scale(1);} }
 
   .hero-byline { font-family:'Lora',serif; font-size:18px; font-style:italic; color:var(--text-soft); margin-bottom:48px; animation:fade-up 0.8s ease 0.7s both; }
@@ -43,9 +43,9 @@
   /* Book */
   .book-display { position:relative; display:inline-block; margin-bottom:48px; animation:book-in 1s ease 0.9s both; }
   @keyframes book-in { from{opacity:0;transform:translateY(30px) rotate(-3deg);} to{opacity:1;transform:rotate(-2deg);} }
-  .book-display:hover .book-img { transform:scale(1.04); box-shadow:-10px 0 0 rgba(100,60,10,0.15),-20px 6px 0 rgba(100,60,10,0.08),0 30px 80px rgba(100,60,10,0.3); }
-  .book-img { width:280px; height:280px; object-fit:cover; border-radius:8px 20px 20px 8px; box-shadow:-8px 0 0 rgba(100,60,10,0.12),-16px 4px 0 rgba(100,60,10,0.07),0 20px 60px rgba(100,60,10,0.25); transition:all 0.4s ease; display:block; }
-  .book-spine { position:absolute; left:-10px; top:6px; bottom:6px; width:10px; background:linear-gradient(to right,#a06830,#e8b96a); border-radius:4px 0 0 4px; }
+  .book-display:hover .book-img { transform:scale(1.04); box-shadow:-10px 0 0 rgba(20,56,95,0.15),-20px 6px 0 rgba(20,56,95,0.08),0 30px 80px rgba(20,56,95,0.3); }
+  .book-img { width:280px; height:280px; object-fit:cover; border-radius:8px 20px 20px 8px; box-shadow:-8px 0 0 rgba(20,56,95,0.12),-16px 4px 0 rgba(20,56,95,0.07),0 20px 60px rgba(20,56,95,0.25); transition:all 0.4s ease; display:block; }
+  .book-spine { position:absolute; left:-10px; top:6px; bottom:6px; width:10px; background:linear-gradient(to right,#4f86c0,#86b9ec); border-radius:4px 0 0 4px; }
 
   /* Price badge — NO rotation, stays still */
   .price-badge { position:absolute; top:-20px; right:-20px; width:90px; height:90px; background:linear-gradient(135deg,#ffcc44,#f5a623); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(245,166,35,0.5),0 2px 8px rgba(0,0,0,0.12); border:3px solid rgba(255,255,255,0.7); z-index:3; animation:badge-pop 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.4s both; }
@@ -56,9 +56,9 @@
 
   /* CTA */
   .hero-cta { animation:fade-up 0.8s ease 1.5s both; display:flex; flex-direction:column; align-items:center; gap:12px; }
-  .cta-btn { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,var(--brown) 0%,#6a3a12 100%); color:var(--gold-pale); font-family:'Baloo 2',cursive; font-size:22px; font-weight:800; padding:16px 48px; border-radius:60px; border:none; cursor:pointer; text-decoration:none; box-shadow:0 8px 0 rgba(74,44,10,0.35),0 12px 30px rgba(74,44,10,0.2); transition:all 0.15s ease; }
-  .cta-btn:hover { transform:translateY(-4px); box-shadow:0 12px 0 rgba(74,44,10,0.35),0 18px 40px rgba(74,44,10,0.25); }
-  .cta-btn:active { transform:translateY(3px); box-shadow:0 4px 0 rgba(74,44,10,0.35); }
+  .cta-btn { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,var(--brown) 0%,#1f4f86 100%); color:var(--gold-pale); font-family:'Baloo 2',cursive; font-size:22px; font-weight:800; padding:16px 48px; border-radius:60px; border:none; cursor:pointer; text-decoration:none; box-shadow:0 8px 0 rgba(20,56,95,0.35),0 12px 30px rgba(20,56,95,0.2); transition:all 0.15s ease; }
+  .cta-btn:hover { transform:translateY(-4px); box-shadow:0 12px 0 rgba(20,56,95,0.35),0 18px 40px rgba(20,56,95,0.25); }
+  .cta-btn:active { transform:translateY(3px); box-shadow:0 4px 0 rgba(20,56,95,0.35); }
   .cta-note { font-size:14px; color:var(--text-soft); font-weight:700; }
 
   /* Wave */
@@ -78,65 +78,65 @@
   .pill-icon { font-size:20px; }
 
   /* About Ralphy */
-  .about-ralphy { background:linear-gradient(135deg,rgba(245,196,168,0.2),rgba(232,185,106,0.12),rgba(174,214,241,0.15)); padding:80px 24px; }
-  .ralphy-card { max-width:760px; margin:0 auto; background:white; border-radius:32px; padding:48px; box-shadow:0 8px 48px rgba(74,44,10,0.08); border:2px solid var(--gold-pale); display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
+  .about-ralphy { background:linear-gradient(135deg,rgba(245,196,168,0.2),rgba(134,185,236,0.12),rgba(174,214,241,0.15)); padding:80px 24px; }
+  .ralphy-card { max-width:760px; margin:0 auto; background:white; border-radius:32px; padding:48px; box-shadow:0 8px 48px rgba(20,56,95,0.08); border:2px solid var(--gold-pale); display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
   .ralphy-photo-wrap { flex-shrink:0; width:200px; height:200px; position:relative; }
-  .ralphy-photo-ring { width:200px; height:200px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); padding:4px; box-shadow:0 8px 32px rgba(201,144,58,0.3); }
+  .ralphy-photo-ring { width:200px; height:200px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); padding:4px; box-shadow:0 8px 32px rgba(58,123,200,0.3); }
   .ralphy-photo { width:100%; height:100%; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid white; display:block; }
   .photo-star { position:absolute; bottom:8px; right:8px; width:44px; height:44px; background:linear-gradient(135deg,#ffcc44,#f5a623); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 4px 12px rgba(245,166,35,0.4); border:2px solid white; }
   .ralphy-text { flex:1; min-width:240px; }
   .ralphy-name { font-family:'Baloo 2',cursive; font-size:32px; font-weight:900; color:var(--brown); margin-bottom:8px; }
-  .ralphy-breed { display:inline-block; background:var(--sage); color:#1a4a1a; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-bottom:16px; }
+  .ralphy-breed { display:inline-block; background:var(--sage); color:#14385f; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:4px 14px; border-radius:20px; margin-bottom:16px; }
   .ralphy-desc { font-size:16px; line-height:1.8; color:var(--text-soft); }
   .ralphy-quote { font-family:'Lora',serif; font-size:17px; font-style:italic; color:var(--brown-mid); margin-top:16px; padding-top:16px; border-top:2px dashed var(--gold-pale); line-height:1.7; }
 
   /* Order */
   .order-section { background:var(--brown); padding:80px 24px 100px; position:relative; overflow:hidden; }
-  .order-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 10% 50%,rgba(232,185,106,0.12) 0%,transparent 60%),radial-gradient(ellipse at 90% 50%,rgba(200,180,224,0.08) 0%,transparent 60%); pointer-events:none; }
+  .order-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 10% 50%,rgba(134,185,236,0.12) 0%,transparent 60%),radial-gradient(ellipse at 90% 50%,rgba(200,180,224,0.08) 0%,transparent 60%); pointer-events:none; }
   .order-inner { max-width:600px; margin:0 auto; text-align:center; position:relative; z-index:2; }
   .order-title { font-family:'Baloo 2',cursive; font-size:clamp(36px,6vw,60px); font-weight:900; color:var(--gold-pale); margin-bottom:8px; line-height:1.1; }
-  .order-sub { font-size:17px; color:rgba(245,228,176,0.65); margin-bottom:40px; line-height:1.6; }
-  .price-card { background:rgba(255,255,255,0.06); border:2px solid rgba(232,185,106,0.25); border-radius:24px; padding:28px 40px; margin-bottom:36px; display:inline-flex; flex-direction:column; align-items:center; gap:4px; }
+  .order-sub { font-size:17px; color:rgba(220,236,252,0.65); margin-bottom:40px; line-height:1.6; }
+  .price-card { background:rgba(255,255,255,0.06); border:2px solid rgba(134,185,236,0.25); border-radius:24px; padding:28px 40px; margin-bottom:36px; display:inline-flex; flex-direction:column; align-items:center; gap:4px; }
   .price-label-top { font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold-light); }
   .price-big { font-family:'Baloo 2',cursive; font-size:72px; font-weight:900; color:var(--gold-pale); line-height:1; display:inline-flex; align-items:baseline; justify-content:center; gap:4px; white-space:nowrap; }
   .price-big .currency-symbol { font-size:42px; color:var(--gold-light); line-height:1; }
   .price-big .currency-code { font-size:28px; color:var(--gold-light); letter-spacing:1px; line-height:1; }
-  .price-note { font-size:13px; color:rgba(245,228,176,0.45); }
-  .shipping-note { display:none; max-width:520px; margin:-18px auto 30px; background:rgba(245,228,176,0.09); border:2px solid rgba(232,185,106,0.28); border-radius:18px; padding:16px 20px; color:rgba(245,228,176,0.88); font-size:15px; font-weight:800; line-height:1.55; text-align:center; }
+  .price-note { font-size:13px; color:rgba(220,236,252,0.45); }
+  .shipping-note { display:none; max-width:520px; margin:-18px auto 30px; background:rgba(220,236,252,0.09); border:2px solid rgba(134,185,236,0.28); border-radius:18px; padding:16px 20px; color:rgba(220,236,252,0.88); font-size:15px; font-weight:800; line-height:1.55; text-align:center; }
   .shipping-note.show { display:block; }
   .shipping-note strong { color:var(--gold-pale); }
   .conditional-field { display:none; }
   .conditional-field.show { display:block; }
-  .shipping-ack { display:none; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.05); border:2px solid rgba(232,185,106,0.18); border-radius:14px; padding:14px 16px; color:rgba(245,228,176,0.78); font-size:14px; font-weight:800; line-height:1.45; }
+  .shipping-ack { display:none; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.05); border:2px solid rgba(134,185,236,0.18); border-radius:14px; padding:14px 16px; color:rgba(220,236,252,0.78); font-size:14px; font-weight:800; line-height:1.45; }
   .shipping-ack.show { display:flex; }
   .shipping-ack input { margin-top:3px; accent-color:var(--gold); width:18px; height:18px; flex-shrink:0; }
   .order-form { display:flex; flex-direction:column; gap:14px; text-align:left; }
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   .field-label { display:block; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px; }
-  .form-input { width:100%; background:rgba(255,255,255,0.07); border:2px solid rgba(232,185,106,0.2); border-radius:14px; padding:14px 18px; font-family:'Nunito',sans-serif; font-size:15px; color:var(--gold-pale); outline:none; transition:all 0.2s; }
-  .form-input::placeholder { color:rgba(232,185,106,0.3); }
-  .form-input:focus { border-color:rgba(232,185,106,0.55); background:rgba(255,255,255,0.1); }
-  .qty-section { display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.05); border:2px solid rgba(232,185,106,0.15); border-radius:14px; padding:14px 20px; }
+  .form-input { width:100%; background:rgba(255,255,255,0.07); border:2px solid rgba(134,185,236,0.2); border-radius:14px; padding:14px 18px; font-family:'Nunito',sans-serif; font-size:15px; color:var(--gold-pale); outline:none; transition:all 0.2s; }
+  .form-input::placeholder { color:rgba(134,185,236,0.3); }
+  .form-input:focus { border-color:rgba(134,185,236,0.55); background:rgba(255,255,255,0.1); }
+  .qty-section { display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.05); border:2px solid rgba(134,185,236,0.15); border-radius:14px; padding:14px 20px; }
   .qty-label-txt { font-size:15px; font-weight:800; color:var(--gold-light); }
-  .qty-control { display:flex; align-items:center; background:rgba(255,255,255,0.08); border:1.5px solid rgba(232,185,106,0.2); border-radius:10px; overflow:hidden; }
+  .qty-control { display:flex; align-items:center; background:rgba(255,255,255,0.08); border:1.5px solid rgba(134,185,236,0.2); border-radius:10px; overflow:hidden; }
   .qty-btn { width:36px; height:36px; background:none; border:none; color:var(--gold-light); font-size:20px; cursor:pointer; font-family:'Baloo 2',cursive; font-weight:900; transition:background 0.2s; display:flex; align-items:center; justify-content:center; }
-  .qty-btn:hover { background:rgba(232,185,106,0.15); }
+  .qty-btn:hover { background:rgba(134,185,236,0.15); }
   .qty-num { width:40px; text-align:center; font-family:'Baloo 2',cursive; font-size:18px; font-weight:900; color:var(--gold-pale); background:none; border:none; outline:none; }
   .qty-total-txt { font-size:16px; font-weight:900; color:var(--gold-light); }
-  .order-btn { width:100%; background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%); color:var(--brown); font-family:'Baloo 2',cursive; font-size:20px; font-weight:900; padding:18px 32px; border-radius:60px; border:none; cursor:pointer; box-shadow:0 8px 0 rgba(160,104,48,0.4),0 12px 30px rgba(201,144,58,0.3); transition:all 0.15s ease; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .order-btn { width:100%; background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%); color:var(--brown); font-family:'Baloo 2',cursive; font-size:20px; font-weight:900; padding:18px 32px; border-radius:60px; border:none; cursor:pointer; box-shadow:0 8px 0 rgba(79,134,192,0.4),0 12px 30px rgba(58,123,200,0.3); transition:all 0.15s ease; display:flex; align-items:center; justify-content:center; gap:10px; }
   .btn-price { white-space:nowrap; display:inline-flex; align-items:baseline; }
-  .order-btn:hover { transform:translateY(-3px); box-shadow:0 11px 0 rgba(160,104,48,0.4),0 18px 40px rgba(201,144,58,0.35); }
-  .order-btn:active { transform:translateY(3px); box-shadow:0 4px 0 rgba(160,104,48,0.4); }
-  .order-fine { margin-top:18px; font-size:13px; color:rgba(245,228,176,0.38); line-height:1.7; text-align:center; }
+  .order-btn:hover { transform:translateY(-3px); box-shadow:0 11px 0 rgba(79,134,192,0.4),0 18px 40px rgba(58,123,200,0.35); }
+  .order-btn:active { transform:translateY(3px); box-shadow:0 4px 0 rgba(79,134,192,0.4); }
+  .order-fine { margin-top:18px; font-size:13px; color:rgba(220,236,252,0.38); line-height:1.7; text-align:center; }
   .success-msg { display:none; background:rgba(152,194,152,0.15); border:2px solid rgba(152,194,152,0.4); border-radius:16px; padding:20px; color:#7ab87a; font-weight:800; font-size:16px; text-align:center; margin-top:16px; line-height:1.6; }
   .checkout-success-panel { display:none; background:rgba(255,255,255,0.08); border:2px solid rgba(152,194,152,0.55); border-radius:24px; padding:30px 26px; margin:28px 0 32px; text-align:center; box-shadow:0 14px 40px rgba(0,0,0,0.12); }
   .checkout-success-panel.show { display:block; }
   .checkout-success-icon { font-size:46px; display:block; margin-bottom:10px; }
   .checkout-success-title { font-family:'Baloo 2',cursive; font-size:32px; font-weight:900; color:var(--gold-pale); margin-bottom:8px; line-height:1.1; }
-  .checkout-success-text { font-size:16px; line-height:1.7; color:rgba(245,228,176,0.82); margin-bottom:16px; }
+  .checkout-success-text { font-size:16px; line-height:1.7; color:rgba(220,236,252,0.82); margin-bottom:16px; }
   .checkout-success-note { background:rgba(152,194,152,0.13); border:1.5px solid rgba(152,194,152,0.38); border-radius:14px; color:#bde4bd; font-size:15px; font-weight:800; line-height:1.6; padding:14px 16px; }
 
-  footer { background:var(--cream); padding:40px 24px; text-align:center; border-top:3px dashed rgba(201,144,58,0.2); }
+  footer { background:var(--cream); padding:40px 24px; text-align:center; border-top:3px dashed rgba(58,123,200,0.2); }
   footer p { font-size:15px; color:var(--text-soft); margin-bottom:6px; font-weight:600; }
   footer strong { color:var(--brown); }
   .footer-paws { font-size:24px; letter-spacing:10px; margin-top:16px; opacity:0.4; display:block; }
@@ -159,10 +159,10 @@
   }
   .payment-icons span {
     background:rgba(255,255,255,0.08);
-    border:1px solid rgba(232,185,106,0.2);
+    border:1px solid rgba(134,185,236,0.2);
     border-radius:8px; padding:8px 14px;
     font-size:13px; font-weight:700;
-    color:rgba(245,228,176,0.6);
+    color:rgba(220,236,252,0.6);
   }
   stripe-buy-button { width:100%; }
 </style>
@@ -197,7 +197,7 @@
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" style="background:var(--cream);display:block;"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#fffdf5"/></svg>
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" style="background:var(--cream);display:block;"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#fafcff"/></svg>
 
 <section class="about-book">
   <div class="section-inner">
@@ -215,7 +215,7 @@
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" style="background:#fffdf5;display:block;"><path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="rgba(245,196,168,0.2)"/></svg>
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" style="background:#fafcff;display:block;"><path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="rgba(245,196,168,0.2)"/></svg>
 
 <section class="about-ralphy">
   <div class="section-inner" style="margin-bottom:40px;">
@@ -238,7 +238,7 @@
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" style="background:rgba(245,196,168,0.2);display:block;"><path d="M0,0 C360,40 1080,20 1440,0 L1440,60 L0,60 Z" fill="#4a2c0a"/></svg>
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" style="background:rgba(245,196,168,0.2);display:block;"><path d="M0,0 C360,40 1080,20 1440,0 L1440,60 L0,60 Z" fill="#14385f"/></svg>
 
 <section class="order-section" id="order">
   <div class="order-inner">
@@ -304,7 +304,7 @@
 
       <p class="order-fine">
         Secure checkout powered by Stripe. The full amount shown above is the amount you will review before payment.
-        Questions? DM <a href="https://instagram.com/ralphy.the.minischnauzer" target="_blank" style="color:rgba(245,228,176,0.9);font-weight:800;text-decoration:underline;">@ralphy.the.minischnauzer</a> on Instagram.
+        Questions? DM <a href="https://instagram.com/ralphy.the.minischnauzer" target="_blank" style="color:rgba(220,236,252,0.9);font-weight:800;text-decoration:underline;">@ralphy.the.minischnauzer</a> on Instagram.
       </p>
 
     </div>
